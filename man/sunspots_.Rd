@@ -8,7 +8,7 @@
 Based on \link[datasets]{sunspot.month}
 }
 \description{
-Modified version of the base \link[datasets]{sunspots} dataset.
+Modified version of the base \link[datasets]{sunspot.month} dataset.
 Includes columns for year, month and start_date of the month.
 Used for examples.
 }
