@@ -1,0 +1,24 @@
+Package: transfrr
+Title: Transfers Information Between Dataframes
+Version: 0.0.0.9000
+Date: 2017-05-20
+Authors@R: person("Ludvig Renbo", "Olsen", email = "r-pkgs@ludvigolsen.dk", role = c("aut", "cre"))
+Description: Add summary information from one dataframe
+    to the dataframe that has been summarized,
+    given only starting posititions of
+    summarized groups.
+Depends:
+    R (>= 3.3.1)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    groupdata2,
+    lubridate
+RoxygenNote: 6.0.1
+Suggests: ggplot2,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
