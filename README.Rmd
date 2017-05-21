@@ -1,0 +1,97 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# transfrr
+
+R package: Add summary information from one dataframe to the dataframe that has been summarized, given only starting posititions of summarized groups.  
+
+E.g. used when one dataframe consists of timestamped samples and another contains summary information about blocks of time.  
+
+Imagine a sampled heart rate with columns 'time' and 'signal' in one dataframe and information about events that happened in blocks of the sampling, with start times of the blocks, in the other dataframe. See Examples.
+
+By Ludvig R. Olsen,  
+Cognitive Science, Aarhus University.  
+Started in Oct. 2016 
+
+Contact at:
+r-pkgs@ludvigolsen.dk
+
+Main functions:   
+
+* transfer
+
+## Installation  
+
+Development version:  
+
+> install.packages("devtools")  
+> devtools::install_github("LudvigOlsen/transfrr")  
+
+<!-- ## Functions   -->
+<!-- ### transfer()   -->
+
+## Examples
+
+### Attach Packages
+```{r error=FALSE,warning=FALSE,message=FALSE}
+library(transfrr)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+
+```
+
+### Load data
+
+```{r}
+sunspots <- sunspots_
+presidents <- USA.presidents
+
+sunspots %>% head(5) %>% kable()
+presidents %>% head(5) %>% kable()
+
+```
+
+### Transferring presidents to the months of their presidency
+```{r}
+transferred <- sunspots %>% 
+  transfer(presidents, by = c("start_date", "took_office"))
+```
+
+```{r}
+# Notice: The first rows will contain NAs
+# as there was no US president at the time
+transferred %>% head(5) %>% kable()
+transferred %>% head(1000) %>% tail(5) %>% kable()
+transferred %>% tail(5) %>% kable()
+
+```
+
+```{r}
+# Plotting sunspots per president
+ggplot(transferred, aes(president, sunspots)) +
+  geom_violin() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+# Plotting sunspots over time
+ggplot(transferred, aes(start_date, sunspots)) +
+  geom_point() +
+  geom_smooth()
+
+
+```
+
+
