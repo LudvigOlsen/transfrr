@@ -25,6 +25,7 @@ Installation
 Dependency: You will need the github version of groupdata2 for now:
 
 > install.packages("devtools")
+>
 > devtools::install\_github("LudvigOlsen/groupdata2")
 
 Development version:
